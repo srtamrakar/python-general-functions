@@ -17,8 +17,9 @@ $ pip install FreqObjectOps
 ## Usage
 1. Import the library.
     ```python
-    from FreqObjectOps import FreqDateOps, FreqDirOps, FreqListOps, FreqStrOps
+    from FreqObjectOps import DateOps, DirOps, ListOps, StrOps
     ```
+1. Each of the imported submodules has several functions. Please refer to help for documentations.
 
 ## Author
 
