@@ -16,15 +16,15 @@ flattened_list = [1, 2, 3, 4, 5]
 
 
 def test_001_get_unique_list():
-	assert ListOps.get_unique_list(list_with_duplicates, sorted=True, reversed=False) == unique_list
+	assert ListOps.remove_duplicates(list_with_duplicates, sorted=True, reversed=False) == unique_list
 
 
 def test_002_get_common_items():
-	assert ListOps.get_common_items(list_one, list_two) == list_common
+	assert ListOps.get_intersection(list_one, list_two) == list_common
 
 
 def test_003_get_all_items():
-	assert ListOps.get_all_items(list_one, list_two) == list_union
+	assert ListOps.get_union(list_one, list_two) == list_union
 
 
 def test_004_get_flat_list():

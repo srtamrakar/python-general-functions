@@ -4,24 +4,24 @@ class ListOps(object):
 		pass
 
 	@classmethod
-	def get_unique_list(cls, list_with_duplicates=None, sorted=None, reversed=None):
+	def remove_duplicates(cls, unfiltered_list=None, sorted=None, reversed=None):
 		if sorted is None:
 			sorted = False
 		if reversed is None:
 			reversed = False
 
-		unique_list = list(set(list_with_duplicates))
+		unique_list = list(set(unfiltered_list))
 		if sorted:
 			unique_list.sort(reverse=reversed)
 
 		return unique_list
 
 	@classmethod
-	def get_common_items(cls, list_one=None, list_two=None):
+	def get_intersection(cls, list_one=None, list_two=None):
 		return list(set(list_one).intersection(list_two))
 
 	@classmethod
-	def get_all_items(cls, list_one=None, list_two=None):
+	def get_union(cls, list_one=None, list_two=None):
 		return list(set(list_one).union(list_two))
 
 	@classmethod
