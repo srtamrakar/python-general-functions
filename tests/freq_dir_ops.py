@@ -3,9 +3,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from FreqObjectOps.FreqDirOps import FreqDirOps
-
-dir_ops = FreqDirOps()
+from FreqObjectOps.DirOps import DirOps
 
 import shutil
 import time
@@ -40,50 +38,49 @@ def test_001_create_temporary_files_and_folder():
 
 
 def test_002_get_file_location():
-	assert dir_ops.get_location_directory_of_a_file(
+	assert DirOps.get_location_directory_of_a_file(
 		file=os.path.join('test_folder', 'file_1.log')
 	) == os.path.join('test_folder')
 
 
 def test_002_get_base_name_from_file():
-	assert dir_ops.get_base_name_from_file(
+	assert DirOps.get_base_name_from_file(
 		file=os.path.join('test_folder', 'file_1.log')
 	) == 'file_1'
 
 
 def test_004_get_extension_from_file():
-	assert dir_ops.get_file_extension(
+	assert DirOps.get_file_extension(
 		file=os.path.join('test_folder', 'file_1.log')
 	) == '.log'
 
 
 def test_005_exists_folder_where_exists():
-	print(test_folder)
-	assert dir_ops.exists_folder(folder=test_folder) is True
+	assert DirOps.exists_folder(folder=test_folder) is True
 
 
 def test_006_exists_folder_where_doesnot_exist():
-	assert dir_ops.exists_folder(folder=os.path.join(os.path.dirname(__file__), 'no_test_folder')) is False
+	assert DirOps.exists_folder(folder=os.path.join(os.path.dirname(__file__), 'no_test_folder')) is False
 
 
 def test_007_removing_temp_files():
-	assert dir_ops.get_filtered_list_without_temporary_files(
+	assert DirOps.get_filtered_list_without_temporary_files(
 		file_list=['~$abc.xlsx', 'abc.xlsx']
 	) == ['abc.xlsx']
 
 
 def test_008_get_all_files_nonrecursive():
-	assert dir_ops.get_all_files_from_path(folder_path=test_folder, pattern='*.log',
-										   recursive=False).sort() == test_filename_folder_list.sort()
+	assert DirOps.get_all_files_from_path(folder_path=test_folder, pattern='*.log',
+										  recursive=False).sort() == test_filename_folder_list.sort()
 
 
 def test_009_get_all_files_recursive():
-	assert dir_ops.get_all_files_from_path(
+	assert DirOps.get_all_files_from_path(
 		folder_path=test_folder, pattern='*.log', recursive=True).sort() == test_filename_all_list.sort()
 
 
 def test_010_get_latest_file():
-	assert dir_ops.get_latest_file(folder_path=test_folder, pattern='*.log') == test_folder_file_2
+	assert DirOps.get_latest_file(folder_path=test_folder, pattern='*.log') == test_folder_file_2
 
 
 def test_011_delete_temporary_files_and_folder():

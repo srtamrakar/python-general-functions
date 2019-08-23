@@ -1,9 +1,10 @@
-class FreqListOps(object):
+class ListOps(object):
 
 	def __init__(self):
 		pass
 
-	def get_unique_list(self, list_with_duplicates=None, sorted=None, reversed=None):
+	@classmethod
+	def get_unique_list(cls, list_with_duplicates=None, sorted=None, reversed=None):
 		if sorted is None:
 			sorted = False
 		if reversed is None:
@@ -15,12 +16,15 @@ class FreqListOps(object):
 
 		return unique_list
 
-	def get_common_items(self, list_one=None, list_two=None):
+	@classmethod
+	def get_common_items(cls, list_one=None, list_two=None):
 		return list(set(list_one).intersection(list_two))
 
-	def get_all_items(self, list_one=None, list_two=None):
+	@classmethod
+	def get_all_items(cls, list_one=None, list_two=None):
 		return list(set(list_one).union(list_two))
 
-	def get_flat_list(self, list_of_lists=None):
+	@classmethod
+	def get_flat_list(cls, list_of_lists=None):
 		flat_list = [item for sub_list in list_of_lists for item in sub_list]
 		return flat_list

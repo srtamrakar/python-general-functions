@@ -1,10 +1,15 @@
-import pandas
 from datetime import datetime
 
+import pandas
 
-class FreqDateOps(object):
 
-	def get_year(self, date_entity=None, date_format=None):
+class DateOps(object):
+
+	def __init__(self):
+		pass
+
+	@classmethod
+	def get_year(cls, date_entity=None, date_format=None):
 		if date_entity is None: return None
 		if date_format is None: date_format = '%Y-%m-%d'
 
@@ -22,7 +27,8 @@ class FreqDateOps(object):
 
 		return None
 
-	def text_to_datetime(self, text=None, date_format=None):
+	@classmethod
+	def text_to_datetime(cls, text=None, date_format=None):
 		if date_format is None: date_format = '%Y-%m-%d'
 		if type(text) == str:
 			try:
@@ -32,7 +38,8 @@ class FreqDateOps(object):
 				raise ValueError("Date should be in the format {0}".format(date_format))
 		return None
 
-	def get_difference_in_year(self, from_date=None, to_date=None, date_format=None):
+	@classmethod
+	def get_difference_in_year(cls, from_date=None, to_date=None, date_format=None):
 		if from_date is None: return None
 
 		if to_date is None:
@@ -44,10 +51,10 @@ class FreqDateOps(object):
 			return None
 
 		if type(from_date) == str:
-			from_date = self.text_to_datetime(text=from_date, date_format=date_format)
+			from_date = cls.text_to_datetime(text=from_date, date_format=date_format)
 
 		if type(to_date) == str:
-			to_date = self.text_to_datetime(text=to_date, date_format=date_format)
+			to_date = cls.text_to_datetime(text=to_date, date_format=date_format)
 
 		years_diff = to_date.year - from_date.year
 
