@@ -23,6 +23,7 @@ class FreqDateOps(object):
 		return None
 
 	def text_to_datetime(self, text=None, date_format=None):
+		if date_format is None: date_format = '%Y-%m-%d'
 		if type(text) == str:
 			try:
 				datetime_from_text = datetime.strptime(text, date_format)
