@@ -59,11 +59,11 @@ def test_004_get_extension_from_file():
 
 def test_005_exists_folder_where_exists():
 	print(test_folder)
-	assert dir_ops.exists_folder(folder=test_folder) == True
+	assert dir_ops.exists_folder(folder=test_folder) is True
 
 
 def test_006_exists_folder_where_doesnot_exist():
-	assert dir_ops.exists_folder(folder=os.path.join(os.path.dirname(__file__), 'no_test_folder')) == False
+	assert dir_ops.exists_folder(folder=os.path.join(os.path.dirname(__file__), 'no_test_folder')) is False
 
 
 def test_007_removing_temp_files():
