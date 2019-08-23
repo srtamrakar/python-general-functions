@@ -39,14 +39,14 @@ class FreqDirOps(object):
 		temp_file_regex = re.compile(r'.*\~\$.*')
 		try:
 			temporary_files = list(filter(temp_file_regex.search, file_list))
-			files_filtered =  list(set(file_list) - set(temporary_files))
+			files_filtered = list(set(file_list) - set(temporary_files))
 			return files_filtered
 		except:
 			return file_list
 
 	def get_all_files_from_path(self, folder_path=None, pattern=None, recursive=None):
 		if folder_path is None: return None
-		if not pattern: pattern = '*.*' # e.g. *.xlsx
+		if not pattern: pattern = '*.*'  # e.g. *.xlsx
 		if not recursive: recursive = False
 		if recursive:
 			file_pattern = os.path.join(folder_path, '**', pattern)
@@ -68,8 +68,3 @@ class FreqDirOps(object):
 	def get_abs_path(self, path=None):
 		if path is None: return None
 		return os.path.abspath(path)
-
-	def get_full_abs_path(self, folder_path=None, filename=None):
-		if None in [folder_path, filename]:
-			return None
-		return os.path.join(self.get_abs_path(folder_path), filename)
