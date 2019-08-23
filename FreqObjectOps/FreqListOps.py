@@ -1,4 +1,4 @@
-class ListFunc(object):
+class FreqListOps(object):
 
 	def __init__(self):
 		pass
