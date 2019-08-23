@@ -83,7 +83,6 @@ def test_009_get_all_files_recursive():
 
 
 def test_010_get_latest_file():
-	# print(dir_ops.get_latest_file(folder_path=test_folder, pattern='*.log'))
 	assert dir_ops.get_latest_file(folder_path=test_folder, pattern='*.log') == test_folder_file_2
 
 
