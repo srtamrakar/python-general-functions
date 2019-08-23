@@ -10,6 +10,11 @@ class StrOps(object):
 
 	@classmethod
 	def is_camel_case(cls, text=None):
+		"""
+		:param text: str
+		:return:
+			whether text is in camelcase
+		"""
 		if text is None: return None
 		invalid_content_regexp = re.compile(r'''[`~!@#$%^&*()\-_=+[\]{};':"\\\|,\./<>?]|\s''')
 		if invalid_content_regexp.search(text):
@@ -20,21 +25,44 @@ class StrOps(object):
 
 	@classmethod
 	def remove_accent(cls, text=None):
+		"""
+		:param text: str
+		:return:
+			text without accents
+		"""
 		return unidecode.unidecode(text)
 
 	@classmethod
 	def clean_snake_case(cls, text=None):
+		"""
+		:param text: str
+		:return:
+			cleaned snake case as str
+		"""
 		snake_clean = re.sub('_+', '_', cls.remove_accent(text))
 		return snake_clean
 
 	@classmethod
 	def text_to_alpha_numeric(cls, text=None, replace_string=None):
+		"""
+		:param text: str
+		:param replace_string: str
+		:return:
+			text with non-alpha characters replaced by replace_string
+		"""
 		if replace_string is None: replace_string = '_'
 		alphanumeric = re.sub('[^a-zA-Z0-9]+', replace_string, cls.remove_accent(text))
 		return alphanumeric
 
 	@classmethod
 	def text_to_camel_case(cls, text=None, case=None):
+		"""
+		:param text: str
+		:param case: str (lower / upper)
+			case of returned text
+		:return:
+			camelCase representation of a text
+		"""
 		if case is None: case = 'lower'
 		camel_case = cls.remove_accent(text).title().replace('_', '')
 		camel_case = re.sub(r'[^a-zA-Z0-9]+', '', camel_case)
@@ -45,6 +73,13 @@ class StrOps(object):
 
 	@classmethod
 	def camel_case_to_snake_case(cls, text=None, case=None):
+		"""
+		:param text: str
+		:param case: str (lower / upper)
+			case of returned text
+		:return:
+			snake_case representation of a text
+		"""
 		if case is None: case = 'lower'
 		first_cap_regexp = re.compile('(.)([A-Z][a-z]+)')
 		all_cap_regexp = re.compile('([a-z])([A-Z0-9])')
@@ -58,6 +93,13 @@ class StrOps(object):
 
 	@classmethod
 	def text_to_snake_case(cls, text=None, case=None):
+		"""
+		:param text: str
+		:param case: str (lower / upper)
+			case of returned text
+		:return:
+			snake_case representation of a text
+		"""
 		if cls.is_camel_case(text=text):
 			return cls.camel_case_to_snake_case(text=text, case=case)
 		else:

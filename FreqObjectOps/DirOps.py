@@ -14,21 +14,41 @@ class DirOps(object):
 
 	@classmethod
 	def get_directory_from_filepath(cls, filepath=None):
+		"""
+		:param filepath: str
+		:return:
+			directory as str
+		"""
 		if filepath is None: return None
 		return os.path.dirname(filepath)
 
 	@classmethod
 	def get_basename_from_filepath(cls, filepath=None):
+		"""
+		:param filepath: str
+		:return:
+			basename as str
+		"""
 		if filepath is None: return None
 		return os.path.splitext(os.path.basename(filepath))[0]
 
 	@classmethod
 	def get_file_extension_from_filepath(cls, filepath=None):
+		"""
+		:param filepath: str
+		:return:
+			file extension as str
+		"""
 		if filepath is None: return None
 		return os.path.splitext(os.path.basename(filepath))[-1]
 
 	@classmethod
 	def exists_folder(cls, folder_path=None):
+		"""
+		:param folder_path: str
+		:return:
+			whether the folder exists as bool
+		"""
 		if folder_path is None: return None
 		if os.path.exists(folder_path):
 			return True
@@ -37,9 +57,10 @@ class DirOps(object):
 	@classmethod
 	def get_filtered_list_without_temporary_files(cls, file_list=None):
 		"""
-		Gets rid of temporary files, which has filename in the format ~$xyz.ext.
-		:param file_list: list of filenames
-		:return: filtered list of non-temporary filenames
+		:param file_list: list
+			list of filenames
+		:return:
+			filtered list of non-temporary filenames
 		"""
 		temp_file_regex = re.compile(r'.*\~\$.*')
 		try:
@@ -51,6 +72,14 @@ class DirOps(object):
 
 	@classmethod
 	def get_all_files_in_directory(cls, folder_path=None, pattern=None, recursive=None):
+		"""
+		:param folder_path: str
+		:param pattern: str
+		:param recursive: bool
+			whether to get files from sub-directories as well
+		:return:
+			list of filenames inside folder_path
+		"""
 		if folder_path is None: return None
 		if not pattern: pattern = '*.*'  # e.g. *.xlsx
 		if not recursive: recursive = False
@@ -64,6 +93,12 @@ class DirOps(object):
 
 	@classmethod
 	def get_latest_file_in_directory(cls, folder_path=None, pattern=None):
+		"""
+		:param folder_path: str
+		:param pattern: str
+		:return:
+			filepath of the last updated file from the directory as str
+		"""
 		if folder_path is None: return None
 		if not pattern: pattern = '*.*'  # e.g. *.xlsx
 		all_files_list = cls.get_all_files_in_directory(folder_path=folder_path, pattern=pattern, recursive=False)
@@ -74,5 +109,10 @@ class DirOps(object):
 
 	@classmethod
 	def get_abs_path_for_a_filepath(cls, filepath=None):
+		"""
+		:param filepath: str
+		:return:
+			absolute filepath as str
+		"""
 		if filepath is None: return None
 		return os.path.abspath(filepath)

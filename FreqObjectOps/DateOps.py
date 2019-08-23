@@ -10,6 +10,14 @@ class DateOps(object):
 
 	@classmethod
 	def get_year(cls, date_entity=None, date_format=None):
+		"""
+		:param date_entity: str | datetime | pandas.*.Timestamp
+			an object representing date
+		:param date_format: str
+			date format, in case type(date_entity) == str
+		:return:
+			year from date as int
+		"""
 		if date_entity is None: return None
 		if date_format is None: date_format = '%Y-%m-%d'
 
@@ -29,6 +37,14 @@ class DateOps(object):
 
 	@classmethod
 	def text_to_datetime(cls, text=None, date_format=None):
+		"""
+		:param text: str
+			string representation of a date
+		:param date_format: str
+			format of a date
+		:return:
+			datetime object of corresponding date
+		"""
 		if date_format is None: date_format = '%Y-%m-%d'
 		if type(text) == str:
 			try:
@@ -40,6 +56,16 @@ class DateOps(object):
 
 	@classmethod
 	def get_difference_in_year(cls, from_date=None, to_date=None, date_format=None):
+		"""
+		:param from_date: str | datetime | pandas.*.Timestamp
+			start date
+		:param to_date:
+			end date
+		:param date_format:
+			date format, in case type(date_entity) == str
+		:return:
+			difference between two dates as int
+		"""
 		if from_date is None: return None
 
 		if to_date is None:
