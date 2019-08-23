@@ -26,12 +26,11 @@ class DateOps(object):
 
 		if type(date_entity) == str:
 			try:
-				datetime.strptime(date_entity, date_format)
+				date_entity = datetime.strptime(date_entity, date_format)
 			except ValueError:
 				raise ValueError("Date should be in the format {0}".format(date_format))
 
-			year, month, day = date_entity.split("-")
-			return int(year)
+			return date_entity.year
 
 		return None
 
