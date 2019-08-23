@@ -1,0 +1,4 @@
+numpy>=1.13.3
+pandas>=0.25.0
+pytest>=5.0.1
+Unidecode>=1.0.22
