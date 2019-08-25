@@ -108,7 +108,7 @@ class DirOps(object):
 		return latest_file
 
 	@classmethod
-	def get_abs_path_for_a_filepath(cls, filepath=None):
+	def get_abs_path(cls, filepath=None):
 		"""
 		:param filepath: str
 		:return:
