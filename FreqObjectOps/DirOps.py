@@ -7,7 +7,7 @@ import re
 import glob
 
 
-def normalize_path(func):
+def normalize_returned_path(func):
 	def wrapper(*args, **kwargs):
 		print('called wrapper')
 		print('{0}'.format(func(*args, **kwargs)))
@@ -21,7 +21,7 @@ class DirOps(object):
 		pass
 
 	@classmethod
-	@normalize_path
+	@normalize_returned_path
 	def get_abs_path(cls, filepath=None):
 		"""
 		:param filepath: str
