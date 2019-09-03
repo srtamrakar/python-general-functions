@@ -7,10 +7,29 @@ import re
 import glob
 
 
+def normalize_path(func):
+	def wrapper(*args, **kwargs):
+		print('called wrapper')
+		print('{0}'.format(func(*args, **kwargs)))
+		return os.path.normcase(os.path.normpath(func(*args, **kwargs)))
+	return wrapper
+
+
 class DirOps(object):
 
 	def __init__(self):
 		pass
+
+	@classmethod
+	@normalize_path
+	def get_abs_path(cls, filepath=None):
+		"""
+		:param filepath: str
+		:return:
+			absolute filepath as str
+		"""
+		if filepath is None: return None
+		return os.path.abspath(filepath)
 
 	@classmethod
 	def get_directory_from_filepath(cls, filepath=None):
@@ -106,13 +125,3 @@ class DirOps(object):
 			return None
 		latest_file = max(all_files_list, key=os.path.getctime)
 		return latest_file
-
-	@classmethod
-	def get_abs_path(cls, filepath=None):
-		"""
-		:param filepath: str
-		:return:
-			absolute filepath as str
-		"""
-		if filepath is None: return None
-		return os.path.abspath(filepath)
