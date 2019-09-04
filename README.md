@@ -35,7 +35,7 @@ $ pip install FreqObjectOps
 1. ```DirOps.get_all_files_in_directory(folder_path, pattern, recursive)```: get all files in a directory that matches certain pattern
 1. ```DirOps.get_latest_file_in_directory(folder_path, pattern)```: get latest file in a directory that matches certain pattern
 1. ```DirOps.get_abs_path(filepath)```: get absolute path for a filepath
-1. ```DirOps.get_normalized_path(filepath)```: get normalized path for a filepath
+1. ```DirOps.get_norm_path(filepath)```: get normalized path for a filepath
 
 #### ```ListOps```
 1. ```ListOps.remove_duplicates(unfiltered_list, sorted, reversed)```: get filtered list with unique elements
