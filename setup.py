@@ -8,7 +8,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md'), encoding='utf-8'
 setup(
 	name='FreqObjectOps',
 	packages=['FreqObjectOps'],
-	version='0.1.0',
+	version='0.1.1',
 	license='MIT',
 	description='Some special functions for some python objects.',
 	long_description=long_description,
@@ -16,8 +16,8 @@ setup(
 	author='Samyak Ratna Tamrakar',
 	author_email='samyak.r.tamrakar@gmail.com',
 	url='https://github.com/srtamrakar/python-general-functions',
-	download_url = 'https://github.com/srtamrakar/python-general-functions/archive/v_0.1.0.tar.gz',
-	keywords=['list', 'string', 'datetime', 'directory'],
+	download_url = 'https://github.com/srtamrakar/python-general-functions/archive/v_0.1.1.tar.gz',
+	keywords=['list', 'string', 'datetime', 'directory', 'path'],
 	install_requires=[
 		'pandas>=0.25.0',
 		'pytest>=5.0.1',
@@ -26,7 +26,7 @@ setup(
 	classifiers=[
 		'Development Status :: 3 - Alpha',  # Either"3 - Alpha", "4 - Beta" or "5 - Production/Stable"
 		'Intended Audience :: Developers',  # Define that your audience are developers
-		'Topic :: Software Development :: Build Tools',
+		'Topic :: Database :: Database Engines/Servers',
 		'License :: OSI Approved :: MIT License',
 		'Programming Language :: Python :: 3',
 		'Programming Language :: Python :: 3.4',
