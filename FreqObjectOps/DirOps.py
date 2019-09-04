@@ -9,7 +9,7 @@ import glob
 
 def normalize_returned_path(func):
 	def wrapper(*args, **kwargs):
-		return DirOps.get_normalized_path(func(*args, **kwargs))
+		return DirOps.get_norm_path(func(*args, **kwargs))
 
 	return wrapper
 
@@ -20,7 +20,12 @@ class DirOps(object):
 		pass
 
 	@classmethod
-	def get_normalized_path(cls, filepath=None):
+	def get_norm_path(cls, filepath=None):
+		"""
+		:param filepath: str
+		:return:
+			normalized filepath as str
+		"""
 		return os.path.normcase(os.path.normpath(filepath))
 
 	@classmethod
@@ -111,7 +116,7 @@ class DirOps(object):
 		else:
 			file_pattern = os.path.join(folder_path, pattern)
 		all_files_list = glob.glob(file_pattern, recursive=recursive)
-		all_files_list = list(map(cls.get_normalized_path, all_files_list))
+		all_files_list = list(map(cls.get_norm_path, all_files_list))
 		all_files_list = cls.get_filtered_list_without_temporary_files(file_list=all_files_list)
 		return all_files_list
 
