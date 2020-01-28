@@ -1,7 +1,7 @@
 import os.path
 import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 from FreqObjectOps.ListOps import ListOps
 
@@ -16,16 +16,21 @@ flattened_list = [1, 2, 3, 4, 5]
 
 
 def test_001_get_unique_list():
-	assert ListOps.remove_duplicates(list_with_duplicates, sorted=True, reversed=False) == unique_list
+    assert (
+        ListOps.remove_duplicates(
+            list_with_duplicates, should_sort=True, should_reverse=False
+        )
+        == unique_list
+    )
 
 
 def test_002_get_common_items():
-	assert ListOps.get_intersection(list_one, list_two) == list_common
+    assert ListOps.get_intersection(list_one, list_two) == list_common
 
 
 def test_003_get_all_items():
-	assert ListOps.get_union(list_one, list_two) == list_union
+    assert ListOps.get_union(list_one, list_two) == list_union
 
 
 def test_004_get_flat_list():
-	assert ListOps.get_flat_list(list_of_lists) == flattened_list
+    assert ListOps.get_flat_list(list_of_lists) == flattened_list
