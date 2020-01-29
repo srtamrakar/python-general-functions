@@ -29,7 +29,7 @@ class DateOps(object):
         if isinstance(date_entity, (datetime, pandas._libs.tslib.Timestamp)) is True:
             return date_entity.year
 
-        if isinstance(date_entity) is True:
+        if isinstance(date_entity, str) is True:
             try:
                 date_entity = datetime.strptime(date_entity, date_format)
             except ValueError:
@@ -40,7 +40,7 @@ class DateOps(object):
         return None
 
     @classmethod
-    def text_to_datetime(cls, text: str = None, date_format: str = None) -> datetime:
+    def text_to_datetime(cls, text: str = None, date_format: str = None) -> Optional[datetime]:
         """
         :param text: str
             string representation of a date
