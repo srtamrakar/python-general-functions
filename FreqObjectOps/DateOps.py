@@ -10,22 +10,9 @@ class DateOps(object):
     @classmethod
     def get_year(
         cls,
-        date_entity: Union[str, datetime, pandas._libs.tslib.Timestamp] = None,
-        date_format: str = None,
+        date_entity: Union[str, datetime, pandas._libs.tslib.Timestamp],
+        date_format: str = "%Y-%m-%d",
     ) -> Optional[int]:
-        """
-        :param date_entity: str | datetime | pandas._libs.tslib.Timestamp
-            an object representing date
-        :param date_format: str
-            date format, in case type(date_entity) == str
-        :return:
-            year from date as int
-        """
-        if date_entity is None:
-            return None
-        if date_format is None:
-            date_format = "%Y-%m-%d"
-
         if isinstance(date_entity, (datetime, pandas._libs.tslib.Timestamp)) is True:
             return date_entity.year
 
@@ -40,17 +27,9 @@ class DateOps(object):
         return None
 
     @classmethod
-    def text_to_datetime(cls, text: str = None, date_format: str = None) -> Optional[datetime]:
-        """
-        :param text: str
-            string representation of a date
-        :param date_format: str
-            format of a date
-        :return:
-            datetime object of corresponding date
-        """
-        if date_format is None:
-            date_format = "%Y-%m-%d"
+    def text_to_datetime(
+        cls, text: str, date_format: str = "%Y-%m-%d"
+    ) -> Optional[datetime]:
         if isinstance(text, str) is True:
             try:
                 datetime_from_text = datetime.strptime(text, date_format)
@@ -62,35 +41,10 @@ class DateOps(object):
     @classmethod
     def get_difference_in_year(
         cls,
-        from_date: Union[str, datetime, pandas._libs.tslib.Timestamp] = None,
-        to_date: Union[str, datetime, pandas._libs.tslib.Timestamp] = None,
-        date_format: str = None,
+        from_date: Union[str, datetime, pandas._libs.tslib.Timestamp],
+        to_date: Union[str, datetime, pandas._libs.tslib.Timestamp] = datetime.today(),
+        date_format: str = "%Y-%m-%d",
     ) -> Optional[int]:
-        """
-        :param from_date: str | datetime | pandas.*.Timestamp
-            start date
-        :param to_date:
-            end date
-        :param date_format:
-            date format, in case type(date_entity) == str
-        :return:
-            difference between two dates as int
-        """
-        if from_date is None:
-            return None
-
-        if to_date is None:
-            to_date = datetime.today()
-
-        if (
-            isinstance(from_date, (datetime, pandas._libs.tslib.Timestamp, str))
-            is False
-        ):
-            return None
-
-        if isinstance(to_date, (datetime, pandas._libs.tslib.Timestamp, str)) is False:
-            return None
-
         if isinstance(from_date, str) is True:
             from_date = cls.text_to_datetime(text=from_date, date_format=date_format)
 

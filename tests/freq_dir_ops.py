@@ -1,12 +1,8 @@
-import os.path
-import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+import os
+import time
+import shutil
 
 from FreqObjectOps.DirOps import DirOps
-
-import shutil
-import time
 
 # names of folder subfolders and their contents for testing
 test_folder = os.path.join(os.path.dirname(__file__), "test_folder")

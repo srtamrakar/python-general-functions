@@ -1,12 +1,8 @@
-import os.path
-import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
-from FreqObjectOps.DateOps import DateOps
 import pytest
 from datetime import datetime
 import pandas as pd
+
+from FreqObjectOps.DateOps import DateOps
 
 date_str = "2010-10-15"
 date_str_correct_format = "%Y-%m-%d"

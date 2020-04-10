@@ -1,8 +1,3 @@
-import os.path
-import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-
 from FreqObjectOps.ListOps import ListOps
 
 list_with_duplicates = [1, 1, 2, 3]

@@ -8,14 +8,7 @@ class StrOps(object):
         pass
 
     @classmethod
-    def is_camel_case(cls, text: str = None) -> bool:
-        """
-        :param text: str
-        :return:
-            whether text is in camelcase
-        """
-        if text is None:
-            return False
+    def is_camel_case(cls, text: str) -> bool:
         invalid_content_regexp = re.compile(
             r"""[`~!@#$%^&*()\-_=+[\]{};':"\\\|,\./<>?]|\s"""
         )
@@ -26,48 +19,21 @@ class StrOps(object):
         return True
 
     @classmethod
-    def remove_accent(cls, text: str = None) -> str:
-        """
-        :param text: str
-        :return:
-            text without accents
-        """
+    def remove_accent(cls, text: str) -> str:
         return unidecode.unidecode(text)
 
     @classmethod
-    def clean_snake_case(cls, text: str = None) -> str:
-        """
-        :param text: str
-        :return:
-            cleaned snake case as str
-        """
+    def clean_snake_case(cls, text: str) -> str:
         snake_clean = re.sub("_+", "_", cls.remove_accent(text))
         return snake_clean
 
     @classmethod
-    def text_to_alpha_numeric(cls, text: str = None, replace_string: str = None) -> str:
-        """
-        :param text: str
-        :param replace_string: str
-        :return:
-            text with non-alpha characters replaced by replace_string
-        """
-        if replace_string is None:
-            replace_string = "_"
+    def text_to_alpha_numeric(cls, text: str, replace_string: str = "_") -> str:
         alphanumeric = re.sub("[^a-zA-Z0-9]+", replace_string, cls.remove_accent(text))
         return alphanumeric
 
     @classmethod
-    def text_to_camel_case(cls, text: str = None, case: str = None) -> str:
-        """
-        :param text: str
-        :param case: str (lower / upper)
-            case of returned text
-        :return:
-            camelCase representation of a text
-        """
-        if case is None:
-            case = "lower"
+    def text_to_camel_case(cls, text: str, case: str = "lower") -> str:
         camel_case = cls.remove_accent(text).title().replace("_", "")
         camel_case = re.sub(r"[^a-zA-Z0-9]+", "", camel_case)
         camel_case = camel_case.replace(" ", "")
@@ -76,16 +42,7 @@ class StrOps(object):
         return camel_case
 
     @classmethod
-    def camel_case_to_snake_case(cls, text: str = None, case: str = None) -> str:
-        """
-        :param text: str
-        :param case: str (lower / upper)
-            case of returned text
-        :return:
-            snake_case representation of a text
-        """
-        if case is None:
-            case = "lower"
+    def camel_case_to_snake_case(cls, text: str, case: str = "lower") -> str:
         first_cap_regexp = re.compile("(.)([A-Z][a-z]+)")
         all_cap_regexp = re.compile("([a-z])([A-Z0-9])")
 
@@ -97,14 +54,7 @@ class StrOps(object):
         return snake_clean
 
     @classmethod
-    def text_to_snake_case(cls, text: str = None, case: str = None) -> str:
-        """
-        :param text: str
-        :param case: str (lower / upper)
-            case of returned text
-        :return:
-            snake_case representation of a text
-        """
+    def text_to_snake_case(cls, text: str, case: str) -> str:
         if cls.is_camel_case(text=text):
             return cls.camel_case_to_snake_case(text=text, case=case)
         else:
