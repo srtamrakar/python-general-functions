@@ -27,15 +27,15 @@ $ pip install FreqObjectOps
 1. ```DateOps.get_difference_in_year(from_date, to_date, date_format)```: get corrected year-difference between two dates
     
 #### ```DirOps```
-1. ```DirOps.get_directory_from_filepath(filepath)```: get directory from a filepath
-1. ```DirOps.get_basename_from_filepath(filepath)```: get basename from filepath
-1. ```DirOps.get_file_extension_from_filepath(filepath)```: get file extension from a file
+1. ```DirOps.get_directory_from_filepath(file_path)```: get directory from a file path
+1. ```DirOps.get_basename_from_filepath(file_path)```: get basename from a file path
+1. ```DirOps.get_file_extension_from_filepath(file_path)```: get file extension from a file path
 1. ```DirOps.exists_folder(folder_path)```: check if folder exists
 1. ```DirOps.get_filtered_list_without_temporary_files(file_list)```: filter temporary files from a list of files
 1. ```DirOps.get_all_files_in_directory(folder_path, pattern, recursive)```: get all files in a directory that matches certain pattern
 1. ```DirOps.get_latest_file_in_directory(folder_path, pattern)```: get latest file in a directory that matches certain pattern
-1. ```DirOps.get_abs_path(filepath)```: get absolute path for a filepath
-1. ```DirOps.get_norm_path(filepath)```: get normalized path for a filepath
+1. ```DirOps.get_abs_path(file_path)```: get absolute path for a file path
+1. ```DirOps.get_norm_path(file_path)```: get normalized path for a file path
 
 #### ```ListOps```
 1. ```ListOps.remove_duplicates(unfiltered_list, sorted, reversed)```: get filtered list with unique elements
