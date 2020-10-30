@@ -26,7 +26,7 @@ setup(
     keywords=["list", "string", "datetime", "directory", "path"],
     install_requires=dependencies_list,
     classifiers=[
-        "Development Status :: 4 - Alpha",  # Either"3 - Alpha", "4 - Beta" or "5 - Production/Stable"
+        "Development Status :: 4 - Beta",  # Either"3 - Alpha", "4 - Beta" or "5 - Production/Stable"
         "Intended Audience :: Developers",  # Define that your audience are developers
         "Topic :: Database :: Database Engines/Servers",
         "License :: OSI Approved :: MIT License",
