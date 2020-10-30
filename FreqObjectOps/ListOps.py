@@ -26,6 +26,12 @@ class ListOps(object):
         return list(set(list_one).union(list_two))
 
     @classmethod
-    def get_flat_list(cls, list_of_lists: List[list] = None) -> list:
-        flat_list = [item for sub_list in list_of_lists for item in sub_list]
-        return flat_list
+    def get_flat_list(cls, list_of_lists: List[list]) -> list:
+        if list_of_lists == list():
+            return list_of_lists
+        elif isinstance(list_of_lists[0], list):
+            return cls.get_flat_list(list_of_lists[0]) + cls.get_flat_list(
+                list_of_lists[1:]
+            )
+        else:
+            return list_of_lists[:1] + cls.get_flat_list(list_of_lists[1:])

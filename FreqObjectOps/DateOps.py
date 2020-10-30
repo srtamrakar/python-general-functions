@@ -10,21 +10,19 @@ class DateOps(object):
     @classmethod
     def get_year(
         cls,
-        date_entity: Union[str, datetime, pandas._libs.tslib.Timestamp],
+        date_entity: Union[str, datetime, pandas.Timestamp],
         date_format: str = "%Y-%m-%d",
     ) -> Optional[int]:
-        if isinstance(date_entity, (datetime, pandas._libs.tslib.Timestamp)) is True:
+        if isinstance(date_entity, (datetime, pandas.Timestamp)) is True:
             return date_entity.year
-
-        if isinstance(date_entity, str) is True:
+        elif isinstance(date_entity, str) is True:
             try:
                 date_entity = datetime.strptime(date_entity, date_format)
+                return date_entity.year
             except ValueError:
-                raise ValueError("Date should be in the format {0}".format(date_format))
-
-            return date_entity.year
-
-        return None
+                raise ValueError(f"Date should be in the format {date_format}")
+        else:
+            raise TypeError(f"Date type not supported")
 
     @classmethod
     def text_to_datetime(
@@ -35,14 +33,13 @@ class DateOps(object):
                 datetime_from_text = datetime.strptime(text, date_format)
                 return datetime_from_text
             except ValueError:
-                raise ValueError("Date should be in the format {0}".format(date_format))
-        return None
+                raise ValueError(f"Date should be in the format {date_format}")
 
     @classmethod
     def get_difference_in_year(
         cls,
-        from_date: Union[str, datetime, pandas._libs.tslib.Timestamp],
-        to_date: Union[str, datetime, pandas._libs.tslib.Timestamp] = datetime.today(),
+        from_date: Union[str, datetime, pandas.Timestamp],
+        to_date: Union[str, datetime, pandas.Timestamp] = datetime.today(),
         date_format: str = "%Y-%m-%d",
     ) -> Optional[int]:
         if isinstance(from_date, str) is True:
@@ -56,9 +53,8 @@ class DateOps(object):
         if to_date.month < from_date.month:
             years_diff -= 1
             return years_diff
-
-        if to_date.month == from_date.month and to_date.day < from_date.day:
+        elif to_date.month == from_date.month and to_date.day < from_date.day:
             years_diff -= 1
             return years_diff
-
-        return years_diff
+        else:
+            return years_diff

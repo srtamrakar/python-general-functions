@@ -26,7 +26,7 @@ class DirOps(object):
 
     @classmethod
     @normalize_returned_path
-    def get_directory_from_file_path(cls, file_path: str) -> str:
+    def get_dir_from_file_path(cls, file_path: str) -> str:
         return os.path.dirname(file_path)
 
     @classmethod
@@ -38,42 +38,36 @@ class DirOps(object):
         return os.path.splitext(os.path.basename(file_path))[-1]
 
     @classmethod
-    def exists_folder(cls, folder_path: str) -> bool:
-        if os.path.exists(folder_path):
+    def exists_dir(cls, dir_: str) -> bool:
+        if os.path.exists(dir_):
             return True
         return False
 
     @classmethod
-    def get_filtered_list_without_temporary_files(
-        cls, file_list: List[str]
-    ) -> List[str]:
+    def filter_out_temporary_files(cls, file_list: List[str]) -> List[str]:
         temp_file_regex = re.compile(r".*~\$.*")
         temporary_file_list = list(filter(temp_file_regex.search, file_list))
         filtered_file_list = list(set(file_list).difference(set(temporary_file_list)))
         return filtered_file_list
 
     @classmethod
-    def get_all_files_in_directory(
-        cls, folder_path: str, pattern: str = "*.*", recursive: bool = False
+    def get_all_files_in_dir(
+        cls, dir_: str, pattern: str = "*.*", recursive: bool = False
     ) -> List[str]:
         if recursive is True:
-            file_pattern = os.path.join(folder_path, "**", pattern)
+            file_pattern = os.path.join(dir_, "**", pattern)
         else:
-            file_pattern = os.path.join(folder_path, pattern)
+            file_pattern = os.path.join(dir_, pattern)
         all_files_list = glob.glob(file_pattern, recursive=recursive)
         all_files_list = list(map(cls.get_norm_path, all_files_list))
-        all_files_list = cls.get_filtered_list_without_temporary_files(
-            file_list=all_files_list
-        )
+        all_files_list = cls.filter_out_temporary_files(file_list=all_files_list)
         return all_files_list
 
     @classmethod
     @normalize_returned_path
-    def get_latest_file_in_directory(
-        cls, folder_path: str, pattern: str = "*.*"
-    ) -> Optional[str]:
-        all_files_list = cls.get_all_files_in_directory(
-            folder_path=folder_path, pattern=pattern, recursive=False
+    def get_latest_file_in_dir(cls, dir_: str, pattern: str = "*.*") -> Optional[str]:
+        all_files_list = cls.get_all_files_in_dir(
+            dir_=dir_, pattern=pattern, recursive=False
         )
         if len(all_files_list) < 1:
             return None
